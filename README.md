@@ -12,19 +12,19 @@ Use the `pip install -r requirements.txt` command to install required dependenci
 
 Copy `lastData.dat` from `%LOCALAPPDATA%\AlecaFrame` into the folder where the script is installed OR let the script do it automatically
 
+Alternatively you can pass in the `lastData.dat` path through the command line
+
 ### Step 4.
 
-Run the script with python: `python AlecaFrame_Data_Parser.py`
+Run the script with python: `python AlecaFrameDataDecompiler.py`
 
 ### Step 5.
 
-All your parsed AlecaFrame data is saved into the `data` directory.
+All your parsed AlecaFrame data is saved into the `output` directory.
 
-`data\lastData.json` is your unmodified AlecaFrame inventory.
+`output\lastData.json` is your parsed AlecaFrame inventory.
 
-`data\lastData.out.json` is your inventory from AlecaFrame fixed up a lil' so it can be imported into openWF
-
-`data\lastData.ldts.json` is your exported loadout configs for importing into openWF (coming eventually)
+You can ignore `output\lastData_patched.json`
 
 ##
 
