@@ -1,2 +1,3 @@
-lastData*
-data
+# Data stuff
+*.dat
+output
