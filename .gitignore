@@ -1,2 +1,6 @@
-lastData*
-data
+# Data stuff
+*.dat
+output
+
+# Old script
+AlecaFrame_Data_Parser.py

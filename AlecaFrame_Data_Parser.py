@@ -14,7 +14,6 @@ data_output_modified_path = path.join(data_out_dir, "lastData.out.json")
 data_output_loadouts_path = path.join(data_out_dir, "lastData.ldts.json")
 
 def main():
-    print(">>> Script Initialized <<<")
 
     if not path.exists(alecaframe_data_wd_path):
         print(f"\"{alecaframe_data_wd_path}\" could not be found.")
@@ -64,6 +63,7 @@ def build_data(decrypted_data: str):
 
     decrypted_data_json : dict[str] = json.loads(decrypted_data)
 
+    # older alecaframe would compile data like this?
     if "InventoryJson" in decrypted_data_json:
         decrypted_data_json = json.loads(decrypted_data_json["InventoryJson"])
 
@@ -76,6 +76,8 @@ def build_data(decrypted_data: str):
     final_data_loadouts = {}
 
     for key in decrypted_data_json_working_copy.keys():
+        print(key)
+
         if any(excluded_key in key for excluded_key in excluded_keys):
             del decrypted_data_json[key]
             continue
@@ -91,8 +93,8 @@ def build_data(decrypted_data: str):
             for loadout_type, loadout_data in loadouts.items():
                 modified_loadouts_type = []
                 for loadout in loadout_data:
-                    if "ItemId" in loadout:
-                        loadout["_id"] = loadout.pop("ItemId")
+                    #if "ItemId" in loadout:
+                    #    loadout["_id"] = loadout.pop("ItemId")
                     modified_loadouts_type.append(loadout)
                 modified_loadouts[loadout_type] = modified_loadouts_type
             final_data_loadouts = modified_loadouts
@@ -119,30 +121,25 @@ def build_data(decrypted_data: str):
             mkdir(data_out_dir)
         except Exception as e:
             print(f"Error. Failed to make \"{data_out_dir}\" folder", e)
+            quit(5)
 
     try:
         with open(data_output_unmodified_path, "w") as file:
             file.write(final_data_unmodified)
     except Exception as e:
         print(f"Failed to write to \"{data_output_unmodified_path}\"", e)
-    finally:
-        file.close()
 
     try:
         with open(data_output_modified_path, "w") as file:
             file.write(final_data_modified_json)
     except Exception as e:
         print(f"Failed to write to \"{data_output_modified_path}\"", e)
-    finally:
-        file.close()
 
     try:
         with open(data_output_loadouts_path, "w") as file:
             file.write(final_data_loadouts_json)
     except Exception as e:
         print(f"Failed to write to \"{data_output_loadouts_path}\"",e)
-    finally:
-        file.close()
 
 
 if __name__ == "__main__":
