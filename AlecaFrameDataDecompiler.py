@@ -96,9 +96,10 @@ def save_data(decrypted_data: str):
         f.write(json.dumps(decrypted_data_json, indent=2))
         print(f"Data saved to {raw_data_output_path}")
 
-    with open(itemid_fixed_data_output_path, "w") as f:
-        f.write(json.dumps(fix_data(decrypted_data_json), indent=2))
-        print(f"Data saved to {itemid_fixed_data_output_path}")
+    if debug:
+        with open(itemid_fixed_data_output_path, "w") as f:
+            f.write(json.dumps(fix_data(decrypted_data_json), indent=2))
+            print(f"Data saved to {itemid_fixed_data_output_path}")
 
 
 def fix_data(decrypted_data_json: dict[str]):

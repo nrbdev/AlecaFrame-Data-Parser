@@ -25,9 +25,3 @@ All your parsed AlecaFrame data is saved into the `output` directory.
 `output\lastData.json` is your parsed AlecaFrame inventory.
 
 You can ignore `output\lastData_patched.json`
-
-##
-
-# Importing to OpenWF
-
-Will add this when I have time
